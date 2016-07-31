@@ -1,11 +1,8 @@
-//Chama o input escondido através do link
-$(function(){
-	$("#importar").on('click', function(e){
-	    e.preventDefault();
-	    $("#input:hidden").trigger('click');
-	});
-	$("#input").on('change', function(e){
-		var file = e.target.files[0],
+var a
+	function upfile(){
+       var e = a = $("#inputfile");
+        console.log(inputfile.files[0])
+		var file = inputfile.files[0],
             imageType = /image.*/;
 
         if (!file.type.match(imageType))
@@ -14,11 +11,13 @@ $(function(){
         var reader = new FileReader();
         reader.onload = fileOnload;
         reader.readAsDataURL(file);
-	});
+        $("body").append("<img  style='opacity: 0;'>")
+	};
 
 
 	function fileOnload(e) {
-        var $img = $('<img>', { src: e.target.result });
+		console.log(e)
+        var $img = $('img').attr('src', e.target.result);
         $img.load(function() {
             var canvas = document.getElementById('MeuCanvas');
             var context = canvas.getContext('2d');
@@ -27,11 +26,11 @@ $(function(){
 					height:this.height
 			});
             context.drawImage(this, 0, 0);
+        	$("img").remove()
         });
-    }	
-});
 
-//Importar
+    }	
+
 
 
 //Novo Documento
@@ -59,11 +58,4 @@ function salvarPNG(){
 
 //Checa se há algum documento para salvar ou imprimir, 
 //caso nao haja retorna uma pagina em branco
-var largura = $('MeuCanvas').attr('width');
-var altura = $('MeuCanvas').attr('height');
-if(altura == undefined || largura == undefined){
-	$('#MeuCanvas').attr({
-		width:0,
-		height:0
-	});
-}
+

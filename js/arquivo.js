@@ -1,35 +1,32 @@
-var a
-	function upfile(){
-       var e = a = $("#inputfile");
-        console.log(inputfile.files[0])
-		var file = inputfile.files[0],
-            imageType = /image.*/;
+//Importar
+function upfile(){
+   var e = $("#inputfile");
+	var file = inputfile.files[0],
+        imageType = /image.*/;
+    if (!file.type.match(imageType))
+        return;
+    var reader = new FileReader();
+    reader.onload = fileOnload;
+    reader.readAsDataURL(file);
+    $("body").append("<img  style='opacity: 0;'>");
 
-        if (!file.type.match(imageType))
-            return;
-
-        var reader = new FileReader();
-        reader.onload = fileOnload;
-        reader.readAsDataURL(file);
-        $("body").append("<img  style='opacity: 0;'>")
-	};
+};
 
 
-	function fileOnload(e) {
-		console.log(e)
-        var $img = $('img').attr('src', e.target.result);
-        $img.load(function() {
-            var canvas = document.getElementById('MeuCanvas');
-            var context = canvas.getContext('2d');
-			$('#MeuCanvas').attr({
-					width:this.width,
-					height:this.height
-			});
-            context.drawImage(this, 0, 0);
-        	$("img").remove()
-        });
+function fileOnload(e) {
+    var $img = $('img').attr('src', e.target.result);
+    $img.load(function() {
+        var canvas = document.getElementById('MeuCanvas');
+        var context = canvas.getContext('2d');
+		$('#MeuCanvas').attr({
+				width:this.width,
+				height:this.height
+		});
+        context.drawImage(this, 0, 0);
+    	$("img").remove()
 
-    }	
+    });
+}	
 
 
 

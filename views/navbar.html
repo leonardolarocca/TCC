@@ -32,8 +32,6 @@
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Editar<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#" id='red'>Redimensionar</a></li>
-						<script type='text/javascript'>
-						</script>
 						<li> <a href="#">Cortar</a> </li>
 						<li> <a href="#">Rotacionar</a> </li>
 						<li role="separador" class="divider"></li>
@@ -45,22 +43,24 @@
 						<li> <a href="#">Girar verticalmente</a></li>
 					</ul>
   				</li>
-			  	<!-- Aprimoramentos -->
+			  	<!-- Imagem -->
 			  	<li class="dropdown" id="aprimoramentos">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Aprimoramentos<span class="caret"></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Imagem<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li> <a onclick="saturation(1.5);">Saturação</a> </li>	
+						<li> <a onclick="saturation(2.0);">Saturação</a> </li>	
 						<li> <a onclick="brightness(-50);">Brilho</a></li>
 						<li> <a href="#">Contraste</a> </li>
 						<li> <a href="#">Nitidez</a> </li>
 						<li> <a href="#">Desfoque</a> </li>
+						<li> <a onclick="noise(500);">Adicionar Ruído</a></li>
+
 					</ul>				  		
 			  	</li>
 				<!-- Cor -->
 				<li class="dropdown" id="cor">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Cor<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li> <a onclick="grayScale();">Remover Saturação</a> </li>
+						<li> <a onclick="grayScale();">Preto e Branco</a> </li>
 						<li> <a onclick="sepia();">Sepia</a> </li>
 						<li> <a onclick="negative();">Inverter Cores</a> </li>
 						<li class="divider"></li>

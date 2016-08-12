@@ -1,8 +1,10 @@
+
 function getCanvas(){
 	var canvas = document.getElementById("MeuCanvas");
 	var context = canvas.getContext("2d");
 	return context;
 }
+
 
 function getPixels(){
 	var context = getCanvas();
@@ -15,9 +17,8 @@ function setPixels(pixels){
 	context.putImageData(pixels,0,0);
 }
 
-
-//implementar essa funcao para um ajuste de control z
-function history(pixels){
+function Reset(){
+	setPixels(original);
 }
 
 //Sensibilidade do Olho Humano de acordo com cada cor.

@@ -12,6 +12,7 @@ function upfile(){
 
 };
 
+var original;
 
 function fileOnload(e) {
     var $img = $('img').attr('src', e.target.result);
@@ -23,8 +24,8 @@ function fileOnload(e) {
 				height:this.height
 		});
         context.drawImage(this, 0, 0);
-    	$("img").remove()
-
+    	$("img").remove();
+    	original = context.getImageData(0,0,MeuCanvas.width,MeuCanvas.height);
     });
 }	
 

@@ -1,10 +1,8 @@
-
 function getCanvas(){
 	var canvas = document.getElementById("MeuCanvas");
 	var context = canvas.getContext("2d");
 	return context;
 }
-
 
 function getPixels(){
 	var context = getCanvas();
@@ -16,7 +14,7 @@ function setPixels(pixels){
 	var context = getCanvas();
 	context.putImageData(pixels,0,0);
 }
-
+		
 function Reset(){
 	setPixels(original);
 }
@@ -27,7 +25,6 @@ var Sensibilidade = function(){
 	this.g = 0.587;
 	this.b = 0.114;
 }
-
 
 function grayScale(){
 	var pixels = getPixels();
@@ -110,16 +107,124 @@ function noise(ajuste){
 	setPixels(pixels);
 }
 
-function sharpen(ajuste){
+
+function desfoque(matriz, divisor, offset){
 	var pixels = getPixels();
-	
-	for(var i = 0; i < pixels.data.length; i += 4){
+	var m = [].concat(matriz[0],matriz[1],matriz[2]);
+	console.log(pixels.data[-1]);
+	var teste = 0;
+	for(var i = 0; i<pixels.data.length; i++){
 
 	}
+	console.log(teste);
 	setPixels(pixels);
 }
 
+function convolve(matrix, divisor, offset) {
+
+  var pixels = getPixels();
+  console.log("Original: ",pixels);
+
+  var m = [].concat(matrix[0], matrix[1], matrix[2]); 
+  console.log("Matriz: ",m);
+
+  if (!divisor) {
+    divisor = m.reduce(function(a, b){return a + b;}) || 1;
+  }
+  console.log("Divisor: ",divisor);
+
+  var largura = pixels.width;
+  console.log(largura);
+
+  var novo_data = pixels;
+
+  var novo_pixel = novo_data.data;
+
+  var tamanho = novo_pixel.length;
+
+  var multiplicador  = [];
+
+  for(var i = 0; i < tamanho; i++){
+  	if((i+1) % 4 === 0){
+  		novo_pixel[i] = pixels.data[i];
+  		continue;
+  	}
+  	multiplicador = [
+	  pixels.data[i - largura * 4 - 4] || pixels.data[i],
+	  pixels.data[i - largura * 4]     || pixels.data[i],
+	  pixels.data[i - largura * 4 + 4] || pixels.data[i],
+	  pixels.data[i - 4]               || pixels.data[i],
+	  pixels.data[i],
+	  pixels.data[i + 4]               || pixels.data[i],
+	  pixels.data[i + largura * 4 - 4] || pixels.data[i],
+	  pixels.data[i + largura * 4]     || pixels.data[i],
+	  pixels.data[i + largura * 4 + 4] || pixels.data[i]
+  	];
+  	  //console.log(multiplicador);
+
+  var resultado = 0;
+
+  for(var j = 0; j < 9; j++){
+  	resultado += multiplicador[j] * m[j]; 
+  }
+  //console.log(resultado);
+
+  resultado /= divisor;
+
+  //console.log(resultado);
+
+  if(offset){
+  	resultado += offset;
+  }
+
+  //console.log(resultado);
+
+  novo_pixel[i] = resultado;
+  }
+  setPixels(novo_data);
+};
 
 
 
 
+/*
+CanvasImage.prototype.convolve = function(matrix, divisor, offset) {
+  var m = [].concat(matrix[0], matrix[1], matrix[2]); // flatten
+  if (!divisor) {
+    divisor = m.reduce(function(a, b) {return a + b;}) || 1; // sum
+  }
+  var olddata = this.original;
+  var oldpx = olddata.data;
+  var newdata = this.context.createImageData(olddata);
+  var newpx = newdata.data
+  var len = newpx.length;
+  var res = 0;
+  var w = this.image.width;
+  for (var i = 0; i < len; i++) {
+    if ((i + 1) % 4 === 0) {
+      newpx[i] = oldpx[i];
+      continue;
+    }
+    res = 0;
+    var these = [
+      oldpx[i - w * 4 - 4] || oldpx[i],
+      oldpx[i - w * 4]     || oldpx[i],
+      oldpx[i - w * 4 + 4] || oldpx[i],
+      oldpx[i - 4]         || oldpx[i],
+      oldpx[i],
+      oldpx[i + 4]         || oldpx[i],
+      oldpx[i + w * 4 - 4] || oldpx[i],
+      oldpx[i + w * 4]     || oldpx[i],
+      oldpx[i + w * 4 + 4] || oldpx[i]
+    ];
+    for (var j = 0; j < 9; j++) {
+      res += these[j] * m[j];
+    }
+    res /= divisor;
+    if (offset) {
+      res += offset;
+    }
+    newpx[i] = res;
+  }
+  this.setData(newdata);
+};*/

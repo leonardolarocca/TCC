@@ -1,6 +1,6 @@
 var matrizes = [
 	{
-		nome: "mean removal - sharpen",
+		name: "mean removal - sharpen",
 		data:[[-1, -1, -1,],
 			  [-1, 9, -1,],
 			  [-1, -1, -1,]]
@@ -56,6 +56,4 @@ var matrizes = [
   	}
 ];
 
-var convolve = function(){
-	
-}
+

@@ -56,4 +56,6 @@ function salvarPNG(){
 
 //Checa se há algum documento para salvar ou imprimir, 
 //caso nao haja retorna uma pagina em branco
-
+$(window).mousemove(function(event) {
+  $("#CanvasTeste").css({"left" : event.pageX, "top" : event.pageY});
+});

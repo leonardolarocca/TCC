@@ -11,6 +11,9 @@ body{
 a{
 	cursor:pointer;
 }
+canvas{
+	cursor: pointer;
+}
 
 
 /*nav.navbar{

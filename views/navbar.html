@@ -35,9 +35,9 @@
 						<li> <a href="#">Cortar</a> </li>
 						<li> <a href="#">Rotacionar</a> </li>
 						<li role="separador" class="divider"></li>
-						<li> <a href="#">Girar 90g</a> </li>
-						<li> <a href="#">Girar 90g anti horário</a></li>
-						<li> <a href="#">Girar 180g</a> </li>
+						<li> <a onclick="Rotate90CW();">Girar 90g</a> </li>
+						<li> <a onclick="Rotate90CCW();">Girar 90g anti horário</a></li>
+						<li> <a onclick="Rotate180();">Girar 180g</a> </li>
 						<li class="divider"></li>
 						<li> <a onclick="RotateX()">Girar horizontalmente</a></li>
 						<li> <a href="#">Girar verticalmente</a></li>
@@ -49,9 +49,8 @@
 					<ul class="dropdown-menu">
 						<li> <a onclick="saturation(2.0);">Saturação</a> </li>	
 						<li> <a onclick="brightness(-50);">Brilho</a></li>
-						<li> <a href="#">Contraste</a> </li>
 						<li> <a href="#">Nitidez</a> </li>
-						<li> <a onclick="convolve(matrizes[6].data)">Desfoque</a> </li>
+						<li> <a onclick="Filtro(1,matrizes[2].data)">Desfoque</a> </li>
 						<li> <a onclick="noise(500);">Adicionar Ruído</a></li>
 
 					</ul>				  		
@@ -95,7 +94,7 @@
 					</ul>	
 	  			</li>
 	  			<li>
-	  				<a id="reset" onclick="Reset();">Reset</a>
+	  				<a id="reset" onclick="resetCanvas();">Reset</a>
 	  			</li>
 		  	</ul>
 		</div>

@@ -1,3 +1,5 @@
+var reader = new FileReader();
+
 //Importar
 function upfile(){
    var e = $("#inputfile");
@@ -5,14 +7,14 @@ function upfile(){
         imageType = /image.*/;
     if (!file.type.match(imageType))
         return;
-    var reader = new FileReader();
     reader.onload = fileOnload;
     reader.readAsDataURL(file);
-    $("body").append("<img  style='opacity: 0;'>");
+    $("body").append("<img style='opacity: 0;'>");
 
 };
 
 var original;
+
 
 function fileOnload(e) {
     var $img = $('img').attr('src', e.target.result);
@@ -20,12 +22,13 @@ function fileOnload(e) {
         var canvas = document.getElementById('MeuCanvas');
         var context = canvas.getContext('2d');
 		$('#MeuCanvas').attr({
-				width:this.width,
-				height:this.height
+			width:this.width,
+			height:this.height
 		});
         context.drawImage(this, 0, 0);
     	$("img").remove();
     	original = context.getImageData(0,0,MeuCanvas.width,MeuCanvas.height);
+
     });
 }	
 
@@ -53,9 +56,3 @@ function salvarPNG(){
 		img, '_blank'
 	);
 }
-
-//Checa se há algum documento para salvar ou imprimir, 
-//caso nao haja retorna uma pagina em branco
-$(window).mousemove(function(event) {
-  $("#CanvasTeste").css({"left" : event.pageX, "top" : event.pageY});
-});

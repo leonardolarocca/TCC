@@ -14,9 +14,13 @@ function setPixels(pixels){
 	var context = getCanvas();
 	context.putImageData(pixels,0,0);
 }
-		
+
 function resetCanvas(){
+	// MeuCanvas.width = img.width;
+	// MeuCanvas.height = img.height;
+	angulo = 0;
 	setPixels(original);
+	// ctx.drawImage(img,0,0);
 }
 
 //Sensibilidade do Olho Humano de acordo com cada cor.

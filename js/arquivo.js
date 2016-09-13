@@ -18,7 +18,7 @@ var original;
 
 function fileOnload(e) {
     var $img = $('img').attr('src', e.target.result);
-    $img.load(function() {
+    $img.on('load', function() {
         var canvas = document.getElementById('MeuCanvas');
         var context = canvas.getContext('2d');
 		$('#MeuCanvas').attr({
@@ -30,7 +30,7 @@ function fileOnload(e) {
     	original = context.getImageData(0,0,MeuCanvas.width,MeuCanvas.height);
 
     });
-}	
+}
 
 
 

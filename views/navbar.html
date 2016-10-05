@@ -1,103 +1,102 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  	<div class="container">
-  	<!-- Os Menus começam aqui-->
-			<div class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-  				<!-- Arquivo -->
-  				<li class="dropdown" id="arquivo">
-  					<!-- Importar -->
-					<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Arquivo <span class="caret"></span></a>
+<div id="custom-bootstrap-menu" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <!-- <div class="navbar-header">
+            <img src="instagram-logo.png" alt="Brand" class="logo" />
+        </div> -->
+        <div class="collapse navbar-collapse navbar-menubuilder">
+            <ul class="nav navbar-nav navbar-left">
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Arquivo <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+      						<li>
+      							<input type="file" id="inputfile" onchange="upfile()"/ style="display:none">
+                    <a onclick="document.getElementById('inputfile').click();">Importar</a>
+      						</li>
+      						<li class="divider"></li>
+      						<li> <a onclick="novo(720,1280);">Novo em branco</a></li>
+      						<li class="divider"></li>
+      						<li> <a onclick="salvarPNG()">Salvar como PNG/Imprimir</a></li>
+      					</ul>
+      			  </li>
+              <li class="dropdown" id="editar">
+      					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Editar<span class="caret"></span></a>
+      					<ul class="dropdown-menu">
+      						<li><a href="#" id='red'>Redimensionar</a></li>
+      						<li> <a href="#">Cortar</a> </li>
+      						<li> <a href="#">Rotacionar</a> </li>
+      						<li role="separador" class="divider"></li>
+      						<li> <a onclick="Rotate90CW();">Girar 90g</a> </li>
+      						<li> <a onclick="Rotate90CCW();">Girar 90g anti horário</a></li>
+      						<li> <a onclick="Rotate180();">Girar 180g</a> </li>
+      						<li class="divider"></li>
+      						<li> <a onclick="RotateX()">Girar horizontalmente</a></li>
+      						<li> <a href="#">Girar verticalmente</a></li>
+      					</ul>
+        				</li>
+      			  	<!-- Imagem -->
+      			  	<li class="dropdown" id="aprimoramentos">
+      					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Imagem<span class="caret"></span></a>
+      					<ul class="dropdown-menu">
 
-					<ul class="dropdown-menu">
-						<li>
-							<input type="file" id="inputfile" onchange="upfile()"/>
-						</li>
+      						<li> <a data-toggle="modal" href="#mymodal">Saturação</a> </li>
+                  <li> <a onclick="brightness(-50);">Brilho</a></li>
+      						<li> <a href="#">Nitidez</a> </li>
+      						<li> <a onclick="Filtro(3,matrizes[2].data)">Desfoque</a> </li>
+      						<li> <a onclick="noise(500);">Adicionar Ruído</a></li>
+
+      					</ul>
+      			  	</li>
+      				<!-- Cor -->
+      				<li class="dropdown" id="cor">
+      					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Cor<span class="caret"></span></a>
+      					<ul class="dropdown-menu">
+      						<li> <a onclick="grayScale();">Preto e Branco</a> </li>
+      						<li> <a onclick="sepia();">Sepia</a> </li>
+      						<li> <a onclick="negative();">Inverter Cores</a> </li>
+      						<li class="divider"></li>
+      						<li> <a onclick="RGB_Levels(255,50,14);">Níveis RGB</a> </li>
+      					</ul>
+      				</li>
+      	  			<li>
+      	  				<a id="reset" onclick="resetCanvas();">Reset</a>
+      	  			</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 
-						<li class="divider"></li>
 
 
-						<li> <a onclick="novo(720,1280);">Novo em branco</a></li>
+<!-- Saturação  -->
+<div class="modal fade" id="mymodal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h2 style="margin-left:37%"> <b> Saturação </b> </h2>
+			</div>
+			<div class="modal-body">
+				<div id="a">0
+					<div id="valor" style="float:right;">2</div>
+				</div>
 
-
-						<li class="divider"></li>
-
-
-						<li> <a onclick="salvarPNG()">Salvar como PNG/Imprimir</a></li>
-
-					</ul>
-				</li>
-				<!-- Editar -->	
-				<li class="dropdown" id="editar">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Editar<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#" id='red'>Redimensionar</a></li>
-						<li> <a href="#">Cortar</a> </li>
-						<li> <a href="#">Rotacionar</a> </li>
-						<li role="separador" class="divider"></li>
-						<li> <a onclick="Rotate90CW();">Girar 90g</a> </li>
-						<li> <a onclick="Rotate90CCW();">Girar 90g anti horário</a></li>
-						<li> <a onclick="Rotate180();">Girar 180g</a> </li>
-						<li class="divider"></li>
-						<li> <a onclick="RotateX()">Girar horizontalmente</a></li>
-						<li> <a href="#">Girar verticalmente</a></li>
-					</ul>
-  				</li>
-			  	<!-- Imagem -->
-			  	<li class="dropdown" id="aprimoramentos">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Imagem<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li> <a onclick="saturation(2.0);">Saturação</a> </li>	
-						<li> <a onclick="brightness(-50);">Brilho</a></li>
-						<li> <a href="#">Nitidez</a> </li>
-						<li> <a onclick="Filtro(3,matrizes[2].data)">Desfoque</a> </li>
-						<li> <a onclick="noise(500);">Adicionar Ruído</a></li>
-
-					</ul>				  		
-			  	</li>
-				<!-- Cor -->
-				<li class="dropdown" id="cor">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Cor<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li> <a onclick="grayScale();">Preto e Branco</a> </li>
-						<li> <a onclick="sepia();">Sepia</a> </li>
-						<li> <a onclick="negative();">Inverter Cores</a> </li>
-						<li class="divider"></li>
-						<li> <a onclick="RGB_Levels(255,50,14);">Níveis RGB</a> </li>
-					</ul>
-				</li>
-	  			<!-- Filtros -->
-	  			<li class="filtros" id="filtros">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Filtros<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li> <a href="#">1977</a> </li>
-						<li> <a href="#">Aden</a> </li>
-						<li> <a href="#">Brooklyn</a> </li>
-						<li> <a href="#">Clarendon</a> </li>
-						<li> <a href="#">EarlyBird</a> </li>
-						<li> <a href="#">Gingham</a> </li>
-						<li> <a href="#">Hudson</a> </li>
-						<li> <a href="#">Inkwell</a> </li>
-						<li> <a href="#">Lark</a> </li>
-						<li> <a href="#">Lo-Fi</a> </li>
-						<li> <a href="#">Mayfair</a> </li>
-						<li> <a href="#">Moon</a> </li>
-						<li> <a href="#">Nashville</a> </li>
-						<li> <a href="#">Perpetua</a> </li>
-						<li> <a href="#">Reyes</a> </li>
-						<li> <a href="#">Rise</a> </li>
-						<li> <a href="#">Slumber</a> </li>
-						<li> <a href="#">Toaster</a> </li>
-						<li> <a href="#">Walden</a> </li>
-						<li> <a href="#">Willow</a> </li>
-						<li> <a href="#">X-Pro ll</a> </li>
-					</ul>	
-	  			</li>
-	  			<li>
-	  				<a id="reset" onclick="resetCanvas();">Reset</a>
-	  			</li>
-		  	</ul>
+				<input id="teste" type="range"step="0.01" min="0" max="2.0">
+			</div>
+			<div class="modal-footer">
+				<button id="confirm" type="button" class="btn btn-info" data-dismiss="modal">Aplicar</button>
+			</div>
 		</div>
-  	</div>
-</nav>
+	</div>
+</div>
 
+<script type="text/javascript">
+$(document).ready(function(){
+  $("input").on('mousemove',function(){
+  var valor = document.getElementById("teste").value;
+    document.getElementById("valor").innerHTML = valor;
+    $("#confirm").click(saturation(valor));
+  });
+
+});
+
+</script>

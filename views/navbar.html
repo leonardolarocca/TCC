@@ -1,7 +1,7 @@
 <div id="custom-bootstrap-menu" class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <!-- <div class="navbar-header">
-            <img src="instagram-logo.png" alt="Brand" class="logo" />
+            <img src="logo.png" alt="Brand" class="logo" />
         </div> -->
         <div class="collapse navbar-collapse navbar-menubuilder">
             <ul class="nav navbar-nav navbar-left">
@@ -11,8 +11,6 @@
       							<input type="file" id="inputfile" onchange="upfile()"/ style="display:none">
                     <a onclick="document.getElementById('inputfile').click();">Importar</a>
       						</li>
-      						<li class="divider"></li>
-      						<li> <a onclick="novo(720,1280);">Novo em branco</a></li>
       						<li class="divider"></li>
       						<li> <a onclick="salvarPNG()">Salvar como PNG/Imprimir</a></li>
       					</ul>
@@ -37,8 +35,8 @@
       					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Imagem<span class="caret"></span></a>
       					<ul class="dropdown-menu">
 
-      						<li> <a data-toggle="modal" href="#mymodal">Saturação</a> </li>
-                  <li> <a onclick="brightness(-50);">Brilho</a></li>
+      						<li> <a data-toggle="modal" href="#saturation_modal">Saturação</a> </li>
+                  <li> <a data-toggle="modal" href="#bright_modal">Brilho</a></li>
       						<li> <a href="#">Nitidez</a> </li>
       						<li> <a onclick="Filtro(3,matrizes[2].data)">Desfoque</a> </li>
       						<li> <a onclick="noise(500);">Adicionar Ruído</a></li>
@@ -47,13 +45,13 @@
       			  	</li>
       				<!-- Cor -->
       				<li class="dropdown" id="cor">
-      					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Cor<span class="caret"></span></a>
+      					<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Cor<span class="caret"></span></a>
       					<ul class="dropdown-menu">
-      						<li> <a onclick="grayScale();">Preto e Branco</a> </li>
+      						<li> <a onclick="grayScale();">Preto e Branco</a></li>
       						<li> <a onclick="sepia();">Sepia</a> </li>
-      						<li> <a onclick="negative();">Inverter Cores</a> </li>
+      						<li> <a onclick="negative();">Inverter Cores</a></li>
       						<li class="divider"></li>
-      						<li> <a onclick="RGB_Levels(255,50,14);">Níveis RGB</a> </li>
+      						<li> <a onclick="RGB_Levels(255,50,14);">Níveis RGB</a></li>
       					</ul>
       				</li>
       	  			<li>
@@ -66,37 +64,63 @@
 
 
 
-
-<!-- Saturação  -->
-<div class="modal fade" id="mymodal">
+<!-- Modal Saturação  -->
+<div class="modal fade" id="saturation_modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h2 style="margin-left:37%"> <b> Saturação </b> </h2>
+				<h2> <b> Saturação </b> </h2>
 			</div>
 			<div class="modal-body">
-				<div id="a">0
-					<div id="valor" style="float:right;">2</div>
+				<div id="a">1
+					<div id="s_valor" style="float:right;">2</div>
 				</div>
 
-				<input id="teste" type="range"step="0.01" min="0" max="2.0">
+				<input id="range" type="range" step="0.01" min="1.0" max="2.0">
 			</div>
 			<div class="modal-footer">
-				<button id="confirm" type="button" class="btn btn-info" data-dismiss="modal">Aplicar</button>
+				<button id="confirm" type="button" class="btn btn-info" data-dismiss="modal" onclick="saturation(valor)">Aplicar</button>
 			</div>
 		</div>
 	</div>
 </div>
 
 <script type="text/javascript">
-$(document).ready(function(){
-  $("input").on('mousemove',function(){
-  var valor = document.getElementById("teste").value;
-    document.getElementById("valor").innerHTML = valor;
-    $("#confirm").click(saturation(valor));
-  });
+  var valor = document.getElementById("range").value;
+  console.log(valor);
+</script>
 
-});
+<!-- Modal Brilho  -->
+<div class="modal fade" id="bright_modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h2> <b> Brilho </b> </h2>
+			</div>
+			<div class="modal-body">
+				<div id="a">0
+					<div id="valor" style="float:right;">100</div>
+				</div>
 
+				<input id="B-range" type="range" step="1.0" min="0.0" max="200.0">
+			</div>
+			<div class="modal-footer">
+				<button id="confirm" type="button" class="btn btn-info" data-dismiss="modal" onchange="show_value(this.value)" onclick="brightness(valor)">Aplicar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+function show_value(x){
+ document.getElementById("slider_value").innerHTML=x;
+}
+// var valor = 0;
+//   $("input").mousemove(function(e){
+//     valor = document.getElementById("B-range").value;
+//     console.log(valor);
+//     // document.getElementById("s_valor").innerHTML = valor;
+//   });
 </script>

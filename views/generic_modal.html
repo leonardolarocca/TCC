@@ -14,8 +14,20 @@
 				<input id="teste" type="range"step="0.01" min="0" max="2.0">
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-info" data-dismiss="modal">Aplicar</button>
+				<button id="confirm" type="button" class="btn btn-info" data-dismiss="modal">Aplicar</button>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("input").on('mousemove',function(){
+  var valor = document.getElementById("teste").value;
+    document.getElementById("valor").innerHTML = valor;
+    $("#confirm").click(saturation(valor));
+  });
+
+});
+
+</script>

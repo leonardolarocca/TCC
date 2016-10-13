@@ -19,3 +19,7 @@ a{
 	border-radius: 1px;
 	box-shadow: 0 0 20px rgba(0,0,0,0.23);
 }
+
+h2{
+	text-align: center;
+}

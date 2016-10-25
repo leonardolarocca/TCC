@@ -37,11 +37,3 @@ function noise(ajuste){
 }
 
 // As funções de Nitidez e Desfoque estão dentro de filtro.js 'cada um tem sua matriz correspondente'
-
-
-
-
-
-
-
-

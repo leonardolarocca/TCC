@@ -32,22 +32,6 @@ function fileOnload(e) {
     });
 }
 
-
-
-//Novo Documento
-function novo(altura, largura){
-	$('#MeuCanvas').attr({
-		width:largura,
-		height:altura
-	});
-	var canvas = document.getElementById('MeuCanvas');
-	var ctx = canvas.getContext('2d');
-	var branco = 'rgba(255,255,255,1)';
-	ctx.fillStyle = branco;
-	ctx.fillRect(0,0,largura,altura);
-}
-
-
 //Fazer download como PNG / Imprimir
 function salvarPNG(){
 	var canvas = document.getElementById('MeuCanvas');

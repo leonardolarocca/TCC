@@ -1,6 +1,5 @@
 function getCanvas(){
-	var canvas = document.getElementById("MeuCanvas");
-	var context = canvas.getContext("2d");
+	var context = document.getElementById("MeuCanvas").getContext("2d");
 	return context;
 }
 

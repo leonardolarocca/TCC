@@ -28,3 +28,16 @@ var Sensibilidade = function(){
 	this.g = 0.587;
 	this.b = 0.114;
 }
+
+// function normalize(pixels){
+// 	var min, max, normalized, avg, total;
+// 	min = Math.min.apply(null, pixels);
+// 	max = Math.max.apply(null, pixels);
+// 	for(i = 0; i < pixels.length; i++){
+// 		total += pixels[i];
+// 	}
+// 	avg = total/pixels.length;
+// 	normalized = (255 / (max - min)) * (avg - min)
+// 	var valor = [normalized,normalized,normalized,1]
+// 	return valor;
+// }
